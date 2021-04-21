@@ -4,6 +4,7 @@ public class Pelicula
 {
     private String titulo, sinops, pais, genero, audiencia;
     private int duracion, fecha, copias;
+    /**hacer el dato copia como static/final: y un contador, quitaria la funcion*/
 
     public Pelicula() {}
 
