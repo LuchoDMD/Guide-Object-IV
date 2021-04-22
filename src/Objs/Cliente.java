@@ -15,7 +15,7 @@ public  class Cliente {
     }
 
     public String getNombre() {
-        return nombre;
+        return nombre + apellido;
     }
 
     @Override
