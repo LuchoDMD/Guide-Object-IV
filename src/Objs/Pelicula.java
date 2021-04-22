@@ -20,6 +20,11 @@ public class Pelicula
         this.sinops = sinops;
     }
 
+    public String getTitulo()
+    {
+        return titulo;
+    }
+
     public void modificarCopia(int mod) /**-1 o 1*/
     {
         copias=copias+mod;
