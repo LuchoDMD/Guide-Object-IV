@@ -7,11 +7,12 @@ public  class Cliente {
     private String apellido;
     private  int telefono;
     private String direccion;
-    private ArrayList<Boleta> boleta;
+    private ArrayList<Boleta> boletas;
+    private static int lBoleta=10;
 
 
     public Cliente() {
-        boleta=new ArrayList<>();
+        boletas=new ArrayList<>();
     }
 
     public Cliente(String nombre, String apellido, int telefono, String direccion) {
@@ -26,8 +27,16 @@ public  class Cliente {
         return nombre + " " + apellido;
     }
 
-    public void peliculaAlquilada(Boleta boleta){
-        this.boleta.add(boleta);
+    public void peliculaAlquilada(Boleta boleta)
+    {
+        if(boletas.size()<lBoleta)
+        {
+            this.boletas.add(boleta);
+        }else
+            {
+                boletas.remove(0);
+                peliculaAlquilada(boleta);
+            }
     }
 
     @Override

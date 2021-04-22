@@ -1,5 +1,8 @@
 package Objs;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 
 public class VideoStore
@@ -8,19 +11,98 @@ public class VideoStore
     ArrayList<Pelicula> peliculas;
     ArrayList<Boleta> boletas;
 
-    public VideoStore(){
+    public VideoStore()
+    {
         clientes = new ArrayList<>();
         peliculas = new ArrayList<>();
         boletas = new ArrayList<>();
     }
 
-    public void consultarAlquileres(){/**NOMBRE SUJETO A MODIFICACION*/
-        for (Boleta aux:boletas) {
+    public void consultarAlquileres()
+    {
+        for (Boleta aux:boletas)
+        {
             System.out.println(aux);
         }
     }
 
-    public void consultarXdia(){
+    public void consultarXdia()
+    {
+        String hoy = LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+        for(Boleta aux : boletas)
+        {
+            if(aux.getDevolucion().equals(hoy))/**aux.getDevolucion() == hoy O con el equals()*/
+            {
+                System.out.println(aux);
+            }
+        }
+    }
+
+    public void alquileresVigentes()
+    {
+        String hoy = LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+        for(Boleta aux: boletas)
+        {
+            if(aux.getVigente())
+            {
+                System.out.println(aux);
+            }
+        }
+    }
+
+    public int existePelicula(String peli)
+    {
+        for (Pelicula p: peliculas)
+        {
+            if(peli.equals(p.getTitulo()))
+            {
+                return peliculas.indexOf(peli);
+            }
+        }
+        return -1;
+    }
+
+    public int existeCliente(String cliente)/**Nombre y Apellido*/
+    {
+        for(Cliente c : clientes)
+        {
+            if(cliente.equals(c.getNombre()))
+            {
+                return clientes.indexOf(cliente);
+            }
+        }
+        return -1;
+    }
+
+    public void tomarPelicula(ArrayList<Pelicula>pelis)
+    {
+        for(Pelicula m : pelis)
+        {
+            for (Pelicula p : peliculas)
+            {
+                if(m.getTitulo().equals(p.getTitulo()))
+                {
+                    int index=peliculas.indexOf(p);
+                    if(p.getStock()>1)
+                    {
+                        p.modificarStock(-1);
+                    }
+                    /**remover p peliculas con el index add el p modificado a peliculas*/
+                }
+            }
+        }
+    }
+
+    public void alquilar(ArrayList<Pelicula>peliculas, Cliente cliente)
+    {
+
+        Boleta boleta=new Boleta(cliente,peliculas);
+        cliente.peliculaAlquilada(boleta);
+        boletas.add(boleta);
+    }
+
+    public void devolver(ArrayList<Pelicula>peliculas, Cliente cliente, Boleta boleta)
+    {
 
     }
 
