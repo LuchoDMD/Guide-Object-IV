@@ -8,12 +8,10 @@ import java.util.ArrayList;
 public class Boleta
 {
     /**Formato dd/mm/aaaa*/
-    private static final String retiro= LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
-    private static final String devolucion= LocalDate.now().plusDays(7).format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+    private static final LocalDate retiro= LocalDate.parse(LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)));
+    private static final LocalDate devolucion= LocalDate.parse(retiro.plusDays(7).format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)));
     private Cliente cliente;
     private ArrayList<Pelicula> alquiladas;
-    private boolean vigencia=true;
-
 
     public Boleta()
     {
@@ -27,10 +25,12 @@ public class Boleta
         this.alquiladas=alquiladas;
     }
 
-    public static String getDevolucion()
+    public static LocalDate getDevolucion()
     {
         return devolucion;
     }
+
+    /**Metodo para retornar la lista*/
 
     private String listaPeliculas()
     {
@@ -42,15 +42,7 @@ public class Boleta
         return rta;
     }
 
-    public void setVigente()
-    {
-        vigencia=false;
-    }
 
-    public boolean getVigente()
-    {
-        return vigencia;
-    }
 
     @Override
     public String toString()

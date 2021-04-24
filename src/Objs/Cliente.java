@@ -27,7 +27,7 @@ public  class Cliente {
         return nombre + " " + apellido;
     }
 
-    public void peliculaAlquilada(Boleta boleta)
+    public void agregarBoleta(Boleta boleta)
     {
         if(boletas.size()<lBoleta)
         {
@@ -35,8 +35,18 @@ public  class Cliente {
         }else
             {
                 boletas.remove(0);
-                peliculaAlquilada(boleta);
+                agregarBoleta(boleta);
             }
+    }
+
+    public String ultimasBoletas()
+    {
+        String rta="";
+        for(Boleta b : boletas)
+        {
+            rta=rta+"["+b.toString()+"]\n";
+        }
+        return rta;
     }
 
     @Override
