@@ -30,13 +30,7 @@ public class Boleta
         return devolucion;
     }
 
-<<<<<<< HEAD
-    public String getDevolucion() {
-        return devolucion;
-    }
-=======
     /**Metodo para retornar la lista*/
->>>>>>> b35cfa3ea06a468e662b6e1bac420e5b89b9fb15
 
     private String listaPeliculas()
     {

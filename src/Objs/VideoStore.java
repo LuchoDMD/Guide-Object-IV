@@ -1,143 +1,110 @@
 package Objs;
 
-<<<<<<< HEAD
-import java.sql.Date;
-=======
->>>>>>> b35cfa3ea06a468e662b6e1bac420e5b89b9fb15
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
 
-public class VideoStore
-{
+public class VideoStore {
     ArrayList<Cliente> clientes;
     ArrayList<Pelicula> peliculas;
     ArrayList<Boleta> boletas;
 
-    public VideoStore()
-    {
+    public VideoStore() {
         clientes = new ArrayList<>();
         peliculas = new ArrayList<>();
         boletas = new ArrayList<>();
     }
 
-    public void agregarCliente(Cliente cliente)
-    {
+    public void agregarCliente(Cliente cliente) {
         clientes.add(cliente);
     }
 
-    public void agregarPelicula(Pelicula pelicula)
-    {
+    public void agregarPelicula(Pelicula pelicula) {
         peliculas.add(pelicula);
     }
 
-    public void consultarAlquileres()
-    {
-        for (Boleta aux:boletas)
-        {
+    public void consultarAlquileres() {
+        for (Boleta aux : boletas) {
             System.out.println(aux);
         }
     }
 
-<<<<<<< HEAD
-    public void consultarXdia(){
-        String fecha= LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
-        for (Boleta aux:boletas) {
-            if (aux.getDevolucion().equals(fecha)){
-                System.out.println(aux);
-            }
-        }
-=======
-    public void consultarAlquilerXdia()
+    public void consultarAlquilerXdia ()
     {
         LocalDate hoy = LocalDate.parse(LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)));
-        for(Boleta aux : boletas)
-        {
-            if(aux.getDevolucion().isEqual(hoy))
-            {
-                System.out.println(aux);
+        for (Boleta aux : boletas) {
+            if (aux.getDevolucion().isEqual(hoy)) {
+                    System.out.println(aux);
             }
         }
     }
 
-    /**ALQUILERES VIGENTES*/
+        /**ALQUILERES VIGENTES*/
 
 
-    public Pelicula buscarPelicula(String titulo)
-    {
-        for (Pelicula p: peliculas)
+        public Pelicula buscarPelicula (String titulo)
         {
-            if(titulo.equals(p.getTitulo()))
-            {
-                return p;
+            for (Pelicula p : peliculas) {
+                if (titulo.equals(p.getTitulo())) {
+                    return p;
+                }
             }
+            return null;
         }
-        return null;
->>>>>>> b35cfa3ea06a468e662b6e1bac420e5b89b9fb15
-    }
 
-    public Cliente buscarCliente(String cliente)/**Nombre y Apellido*/
-    {
-        for(Cliente c : clientes)
+        public Cliente buscarCliente (String cliente)/**Nombre y Apellido*/
         {
-            if(cliente.equals(c.getNombre()))
-            {
-                return c;
+            for (Cliente c : clientes) {
+                if (cliente.equals(c.getNombre())) {
+                    return c;
+                }
             }
+            return null;
         }
-        return null;
-    }
 
-    public void retirarPelicula(ArrayList<Pelicula>pelis)
-    {
-        for(Pelicula m : pelis)
+        public void retirarPelicula (ArrayList < Pelicula > pelis)
         {
-            for (Pelicula p : peliculas)
-            {
-                if(m.getTitulo().equals(p.getTitulo()))
-                {
-                    int index=peliculas.indexOf(p);
-                    if(p.getStock()>1)
-                    {
-                        p.modificarStock(-1);
+            for (Pelicula m : pelis) {
+                for (Pelicula p : peliculas) {
+                    if (m.getTitulo().equals(p.getTitulo())) {
+                        int index = peliculas.indexOf(p);/**Variable index no usada*/
+                        if (p.getStock() > 1) {
+                            p.modificarStock(-1);
+                        }
                     }
                 }
             }
         }
-    }
 
-    public void devolverPelicula(ArrayList<Pelicula>pelis)
-    {
-        for(Pelicula m : pelis)
+        public void devolverPelicula (ArrayList < Pelicula > pelis)
         {
-            for (Pelicula p : peliculas)
-            {
-                if(m.getTitulo().equals(p.getTitulo()))
-                {
-                    int index=peliculas.indexOf(p);
-                    if(p.getStock()>1)
-                    {
-                        p.modificarStock(1);
+            for (Pelicula m : pelis) {
+                for (Pelicula p : peliculas) {
+                    if (m.getTitulo().equals(p.getTitulo())) {
+                        int index = peliculas.indexOf(p);/**Variable index no usada*/
+                        if (p.getStock() > 1) {
+                            p.modificarStock(1);
+                        }
                     }
                 }
             }
         }
+
+        public void alquilar (ArrayList < Pelicula > pelis, Cliente cliente)
+        {
+            retirarPelicula(pelis);
+            Boleta boleta = new Boleta(cliente, peliculas);
+            cliente.agregarBoleta(boleta);
+            boletas.add(boleta);
+        }
+
+        public void devolver (Boleta boleta)
+        {
+
+        }
     }
 
-    public void alquilar(ArrayList<Pelicula>pelis, Cliente cliente)
-    {
-        retirarPelicula(pelis);
-        Boleta boleta=new Boleta(cliente,peliculas);
-        cliente.agregarBoleta(boleta);
-        boletas.add(boleta);
-    }
-
-    public void devolver(Boleta boleta)
-    {
-
-    }
-}
 /**
  * ● Quiere una forma de poder consultar los alquileres vigentes.X
  * ● Quiere una forma de poder consultar las devoluciones que deberían hacerse en el dia de la fecha.V
