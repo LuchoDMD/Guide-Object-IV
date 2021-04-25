@@ -8,19 +8,35 @@ import java.util.ArrayList;
 public class Boleta
 {
     /**Formato dd/mm/aaaa*/
-    private static final String retiro= LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
-    private static final String devolucion= LocalDate.now().plusDays(7).format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
-    private ArrayList<Pelicula> alquiladas;
+    private static final LocalDate retiro= LocalDate.parse(LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)));
+    private static final LocalDate devolucion= LocalDate.parse(retiro.plusDays(7).format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)));
     private Cliente cliente;
+    private ArrayList<Pelicula> alquiladas;
 
-    public Boleta(){
-        alquiladas= new ArrayList<>();
+    public Boleta()
+    {
         cliente = new Cliente();
+        alquiladas= new ArrayList<>();
     }
 
+    public Boleta(Cliente cliente,ArrayList<Pelicula>alquiladas)
+    {
+        this.cliente=cliente;
+        this.alquiladas=alquiladas;
+    }
+
+    public static LocalDate getDevolucion()
+    {
+        return devolucion;
+    }
+
+<<<<<<< HEAD
     public String getDevolucion() {
         return devolucion;
     }
+=======
+    /**Metodo para retornar la lista*/
+>>>>>>> b35cfa3ea06a468e662b6e1bac420e5b89b9fb15
 
     private String listaPeliculas()
     {
@@ -31,6 +47,8 @@ public class Boleta
         }
         return rta;
     }
+
+
 
     @Override
     public String toString()
