@@ -1,5 +1,9 @@
 package Objs;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 
 public class VideoStore
@@ -21,7 +25,12 @@ public class VideoStore
     }
 
     public void consultarXdia(){
-
+        String fecha= LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+        for (Boleta aux:boletas) {
+            if (aux.getDevolucion().equals(fecha)){
+                System.out.println(aux);
+            }
+        }
     }
 
 

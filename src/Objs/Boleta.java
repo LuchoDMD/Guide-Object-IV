@@ -1,6 +1,6 @@
 package Objs;
 
-import java.time.LocalDate;;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
@@ -16,6 +16,10 @@ public class Boleta
     public Boleta(){
         alquiladas= new ArrayList<>();
         cliente = new Cliente();
+    }
+
+    public String getDevolucion() {
+        return devolucion;
     }
 
     private String listaPeliculas()
