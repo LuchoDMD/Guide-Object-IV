@@ -30,6 +30,18 @@ public class Pelicula
         return stock;
     }
 
+    public String getGenero() {
+        return genero;
+    }
+
+    public int getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
+    }
+
     public void modificarStock(int mod)
     {
         stock=stock+mod;

@@ -4,6 +4,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.stream.Collectors;
+
 
 public class VideoStore {
     ArrayList<Cliente> clientes;
@@ -51,6 +56,28 @@ public class VideoStore {
                 }
             }
             return null;
+        }
+
+
+    /**GENERA UN ARRAYLIST LOCAL CON LAS PELICULAS POR GENERO Y LO DEVUELVE, ASI SE PUEDE PRINTEAR CON SOUT EN EL MAIN*/
+        public ArrayList peliculasXgenero (String genero)
+        {
+            ArrayList<Pelicula> peliculasXgenero=new ArrayList<>();
+            for (Pelicula p  : peliculas){
+                if(genero.equals(p.getGenero())){
+                    peliculasXgenero.add(p);
+                }
+            }
+            return peliculasXgenero;
+        }
+    /**encontre esta forma de ordenar en internet y funciona, ahora esta puesto con la duracion para probarlo link: https://jarroba.com/ordenar-un-arraylist-en-java/*/
+        public void ordenarXPopularidad(){
+            Collections.sort(peliculas, new Comparator<Pelicula>() {
+                @Override
+                public int compare(Pelicula o1, Pelicula o2) {
+                    return new Integer(o2.getDuracion()).compareTo(new Integer(o1.getDuracion()));
+                }
+            });
         }
 
         public Cliente buscarCliente (String cliente)/**Nombre y Apellido*/
