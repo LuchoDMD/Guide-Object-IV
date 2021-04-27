@@ -1,5 +1,6 @@
 package Objs;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public  class Cliente {
@@ -39,7 +40,8 @@ public  class Cliente {
             }
     }
 
-    public String ultimasBoletas()
+
+    public String mostrarBoletas()
     {
         String rta="";
         for(Boleta b : boletas)
@@ -48,6 +50,7 @@ public  class Cliente {
         }
         return rta;
     }
+
 
     @Override
     public String toString() {

@@ -83,7 +83,6 @@ public class VideoStore
             {
                 if(m.getTitulo().equals(p.getTitulo()))
                 {
-                    int index=peliculas.indexOf(p);
                     if(p.getStock()>1)
                     {
                         p.modificarStock(-1);
@@ -101,7 +100,6 @@ public class VideoStore
             {
                 if(m.getTitulo().equals(p.getTitulo()))
                 {
-                    int index=peliculas.indexOf(p);
                     if(p.getStock()>1)
                     {
                         p.modificarStock(1);
@@ -121,7 +119,7 @@ public class VideoStore
 
     public void devolver(Boleta boleta)
     {
-
+        devolverPelicula(boleta.getAlquiladas());
     }
 }
 /**

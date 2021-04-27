@@ -30,7 +30,10 @@ public class Boleta
         return devolucion;
     }
 
-    /**Metodo para retornar la lista*/
+    public ArrayList<Pelicula> getAlquiladas()
+    {
+        return alquiladas;
+    }
 
     private String listaPeliculas()
     {
